@@ -1,10 +1,18 @@
 import socket
+import sys
 
 PORT = 80
 
 def main():
+    # Host deve ser passado via linha de comando
+    if(len(sys.argv) == 2):
+        hostname = sys.argv[1]
+    else:
+        print('usage: simplex-talk host')
+        sys.exit(1)
+
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-        host = socket.gethostbyname("127.0.0.1") # Ainda nao sei oq colocar no host
+        host = socket.gethostbyname(hostname)
         s.connect((host, PORT))
         data = input()
         s.send(bytes(data, 'UTF-8'))
