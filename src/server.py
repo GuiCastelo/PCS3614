@@ -6,7 +6,7 @@ MAX_PENDING = 5
 
 def main():
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-        s.bind((socket.INADDR_ANY, PORT))
+        s.bind(('', PORT))
         s.listen(MAX_PENDING)
         conn, addr = s.accept()
         with conn:
