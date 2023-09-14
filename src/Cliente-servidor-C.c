@@ -42,7 +42,7 @@ int main(int argc, char * argv[]) {
     sin.sin_family = AF_INET;
     bcopy(hp->h_addr, (char *)&sin.sin_addr, hp->h_length);
     sin.sin_port = htons(SERVER_PORT);
-    
+
     /* active open */
     if ((s = socket(PF_INET, SOCK_STREAM, 0)) < 0) {
         perror("simplex-talk: socket");
@@ -105,7 +105,7 @@ int main() {
         }
 
         while (len = recv(new_s, buf, sizeof(buf), 0))
-        fputs(buf, stdout);
+            fputs(buf, stdout);
         close(new_s);
     }
 }
