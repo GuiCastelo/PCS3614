@@ -8,8 +8,7 @@ def main():
     if(len(sys.argv) == 2):
         hostname = sys.argv[1]
     else:
-        print('usage: simplex-talk host')
-        sys.exit(1)
+        raise AttributeError('usage: simple-talk host')
 
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         host = socket.gethostbyname(hostname)
