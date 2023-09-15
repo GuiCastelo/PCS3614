@@ -14,7 +14,9 @@ def main():
         host = socket.gethostbyname(hostname)
         s.connect((host, PORT))
         data = input()
-        s.send(bytes(data, 'UTF-8'))
+        while data:
+            s.send(bytes(data, 'UTF-8'))
+            data = input()
 
 if __name__ == '__main__':
     main()
