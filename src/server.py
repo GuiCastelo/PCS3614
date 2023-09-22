@@ -2,7 +2,7 @@ import socket
 import os
 
 PORT = 80
-MAX_LINE = 256
+MAX_LINE = 512
 MAX_PENDING = 5
 
 def main():
@@ -22,6 +22,7 @@ def main():
                 response = b'HTTP/1.1 404 ERRO\r\n\r\n'
             finally:
                 conn.sendall(response)
+                conn.close()
         s.close()
 
 def find_file(filename):
