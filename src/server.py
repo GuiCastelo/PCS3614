@@ -19,7 +19,7 @@ def main():
                 response = f'HTTP/1.1 200 OK\r\nContent-Length:{results["size"]}\r\nContent-Type:text/html\r\n\r\n{results["bytes"]}'
                 response = bytes(response, 'UTF-8')
             except:
-                response = b'HTTP/1.1 400 ERRO\r\n\r\n'
+                response = b'HTTP/1.1 404 ERRO\r\n\r\n'
             finally:
                 conn.sendall(response)
         s.close()
