@@ -27,7 +27,6 @@ def main():
             s.close()
         except ConnectionRefusedError:
             print('Conexão recusada pelo servidor')
-            exit()
 
 if __name__ == '__main__':
     main()
