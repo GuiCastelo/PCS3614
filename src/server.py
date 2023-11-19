@@ -6,10 +6,13 @@ MAX_LINE = 512
 MAX_PENDING = 5
 
 def main():
-    family = socket.AF_INET6 if input('Inicializar servidor para conexões IPV6?(y/n): ') == 'y' else socket.AF_INET 
-    with socket.socket(family, socket.SOCK_STREAM) as s:
-        s.bind(('', PORT))
-        s.listen(MAX_PENDING)
+    if socket.has_dualstack_ipv6():
+        family = socket.AF_INET6
+        dualstack = True
+    else:
+        family = socket.AF_INET6 if input('Inicializar servidor para conexões IPV6?(y/n): ') == 'y' else socket.AF_INET
+        dualstack = False
+    with socket.create_server(('', PORT), backlog=MAX_PENDING, family=family, dualstack_ipv6=dualstack) as s:
         while True:
             conn, addr = s.accept()
             with conn:
