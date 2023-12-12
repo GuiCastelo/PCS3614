@@ -18,7 +18,7 @@ def main():
     
     with socket.socket(family, socket.SOCK_STREAM) as s:
         try:
-            s.connect(host)    
+            s.connect(host)
             print(f'Conexão feita usando {"IPV6" if family == socket.AF_INET6 else "IPV4"}')
             request = f'GET /{file} HTTP/1.1\r\nHost:{host}\r\n\r\n'
             s.send(bytes(request, 'UTF-8'))
