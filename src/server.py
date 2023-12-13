@@ -15,7 +15,6 @@ def main():
         family = socket.AF_INET6 if input('Inicializar servidor para conexões IPV6?(y/n): ') == 'y' else socket.AF_INET
         dualstack = False
     with socket.create_server(('', PORT), backlog=MAX_PENDING, family=family, dualstack_ipv6=dualstack) as s:
-        s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         threads = []
         try:
             while True:
